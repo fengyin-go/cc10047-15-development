@@ -200,6 +200,17 @@ export const MODULES: ModuleMeta[] = [
     actionTargets: {"发起审计": "审计中", "确认报告": "已通过"},
     metrics: ["报告总数", "已通过审计", "未通过审计"],
   },
+  {
+    key: "incremental_publish",
+    name: "增量发布",
+    entity: "增量事务",
+    desc: "记录增量写入批次到版本可见之间的发布状态，支持确认、撤销与并发唯一终态",
+    fields: ["事务标识", "目标湖表", "写入批次", "操作工人", "数据行数", "起始偏移", "结束偏移", "待发布版本"],
+    statuses: ["待发布", "已确认", "已撤销"],
+    actions: ["确认发布", "撤销发布"],
+    actionTargets: {"确认发布": "已确认", "撤销发布": "已撤销"},
+    metrics: ["事务总数", "待发布事务", "终态事务"],
+  },
 ]
 
 export const MODULE_BY_KEY: Map<string, ModuleMeta> = new Map(
